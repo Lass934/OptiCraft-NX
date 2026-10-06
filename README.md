@@ -18,22 +18,6 @@ the root of the microSD card, so that `sdmc:/switch/OptiCraft/` contains
 `OptiCraft.nro` and `data/`. Open **OptiCraft NX** from the Homebrew Launcher,
 preferably in title mode (hold R while opening a game) for more memory.
 
-## Switch targets
-
-The diagnostic and full game intentionally use separate source sets and output
-names:
-
-| Preset | Purpose | Output |
-| --- | --- | --- |
-| `switch-bringup` | Small controller, framebuffer, SD, and toolchain diagnostic. | `bin/switch/OptiCraft-bringup.nro` |
-| `switch-release` | Optimized full-game target. | `bin/switch/OptiCraft.nro` |
-| `switch-debug` | Debug full-game target. | `bin/switch/OptiCraft.nro` |
-
-The full game uses a native EGL/OpenGL context through the Switch Mesa/Nouveau
-portlibs. Its compatibility renderer translates the shared matrix, texture,
-alpha-test, interleaved-mesh, and retained chunk-list operations into a
-shader-backed OpenGL pipeline.
-
 ## Requirements
 
 Install the following before configuring:
