@@ -10,6 +10,14 @@ by, or sponsored by Mojang Studios or Microsoft.
 > repository does not provide instructions for modifying a console or bypassing
 > platform security.
 
+## Installing a release
+
+Download `OptiCraft-<version>.zip` from
+[Releases](https://github.com/Lass934/OptiCraft-NX/releases) and extract it to
+the root of the microSD card, so that `sdmc:/switch/OptiCraft/` contains
+`OptiCraft.nro` and `data/`. Open **OptiCraft NX** from the Homebrew Launcher,
+preferably in title mode (hold R while opening a game) for more memory.
+
 ## Switch targets
 
 The diagnostic and full game intentionally use separate source sets and output
@@ -143,7 +151,8 @@ libnx owns Home-button and applet lifecycle handling.
 
 ## Switch diagnostics
 
-Nothing debug-related is drawn on screen. Once a world is open, a watchdog
+No diagnostic text is drawn on screen unless the F3 overlay is opened with
+`-`. Once a world is open, a watchdog
 thread checks that frames keep starting. If none starts for 3 seconds it
 samples the main thread three times and appends its program counter, link
 register and the code addresses found on its stack to
@@ -155,6 +164,13 @@ A short GL state line for the terrain pass is also written to
 `sdmc:/switch/OptiCraft/status.log` every ~600 frames, along with any entity
 whose collision box became non-finite (those queries are skipped instead of
 hanging the game).
+
+Every ~300 frames the same file gets a frame-time breakdown: `perf frame=`
+(average frame, render phases and the pending lighting jobs as `lightQ`),
+`perf phases:` (named tick phases), `perf stages:` (time between checkpoints,
+covering the whole frame) and `perf peaks:` (the worst single sample of each
+phase in that window). Attach `status.log` and `stall.log` when reporting
+performance problems or hangs.
 
 ## Homebrew metadata and deployment
 
