@@ -1,8 +1,7 @@
 # OptiCraft NX — Nintendo Switch Homebrew
 
-OptiCraft Heritage is a clean-room C++ implementation of classic Minecraft-era
-gameplay. This repository supports PC, PlayStation 2, Nintendo Wii, and a native
-Nintendo Switch Homebrew target built with devkitA64 and libnx.
+OptiCraft NX is a clean-room C++ implementation of classic Minecraft-era
+gameplay (1.2.5) for Nintendo Switch Homebrew, built with devkitA64 and libnx.
 
 The project is independently implemented and is not affiliated with, endorsed
 by, or sponsored by Mojang Studios or Microsoft.
@@ -25,14 +24,13 @@ names:
 The full game uses a native EGL/OpenGL context through the Switch Mesa/Nouveau
 portlibs. Its compatibility renderer translates the shared matrix, texture,
 alpha-test, interleaved-mesh, and retained chunk-list operations into a
-shader-backed OpenGL pipeline. It does not reuse the Wii GX or PS2 GS renderer.
+shader-backed OpenGL pipeline.
 
 ## Requirements
 
 Install the following before configuring:
 
 - CMake 3.21 or newer and Ninja.
-- Git and the repository submodules.
 - devkitPro `switch-dev`, including devkitA64, libnx, `nacptool`, and `elf2nro`.
 - `switch-zlib` for either full-game preset. It is not needed by bring-up.
 - The Switch OpenGL portlibs supplied with `switch-dev` (`EGL`, `glad`,
@@ -60,12 +58,6 @@ test -f "$DEVKITPRO/portlibs/switch/lib/libz.a"
 ```
 
 ## Build
-
-Initialize dependencies in an existing checkout:
-
-```bash
-git submodule update --init --recursive
-```
 
 Build the hardware diagnostic first on a new setup:
 
@@ -171,7 +163,7 @@ existing 256×256 JPEG:
 
 ```bash
 cmake --preset switch-release \
-  -DSWITCH_TITLE="OptiCraft Heritage" \
+  -DSWITCH_TITLE="OptiCraft NX" \
   -DSWITCH_AUTHOR="Your name" \
   -DSWITCH_VERSION="1.0.0" \
   -DSWITCH_ICON="/absolute/path/to/icon.jpg"
@@ -183,16 +175,10 @@ If `nxlink` is installed, CMake also exposes `switch-nxlink`:
 cmake --build --preset switch-release --target switch-nxlink
 ```
 
-## Other targets
-
-Desktop, PlayStation 2, and Nintendo Wii code and presets remain available.
-Platform targets select one implementation of each public backend so host- or
-console-specific code does not enter unrelated link targets.
-
 ## Third-party software
 
-Third-party libraries are under `external/` and retain their respective
-licenses and notices. Review those licenses before redistributing binaries.
+Third-party code is under `external/` (stb and minizip from zlib) and retains
+its license and notices. Review those licenses before redistributing binaries.
 
 ## Credits
 
